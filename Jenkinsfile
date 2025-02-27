@@ -1,6 +1,11 @@
 pipeline {
     agent any
     stages {
+        stage('Install Dependencies') {
+            steps {
+                bat 'npm install'
+            }
+        }
         stage('Run Tests') {
             steps {
                 bat 'npm run test' // Hoặc `mvn test` nếu là Java
