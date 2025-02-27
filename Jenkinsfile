@@ -8,11 +8,11 @@ pipeline {
             }
         }
 
-        // stage('Code Check') {
-        //     steps {
-        //         sh 'npm run lint'
-        //     }
-        // }
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm ci'  // Cài đặt dependencies
+            }
+        }
 
         stage('Run Tests') {
             steps {
