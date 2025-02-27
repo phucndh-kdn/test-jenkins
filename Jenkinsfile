@@ -3,12 +3,12 @@ pipeline {
     stages {
         stage('Run Tests') {
             steps {
-                sh 'npm run test' // Hoặc `mvn test` nếu là Java
+                bat 'npm run test' // Hoặc `mvn test` nếu là Java
             }
         }
         stage('Build') {
             steps {
-                sh 'npm run build' // Hoặc `mvn package`
+                bat 'npm run build' // Hoặc `mvn package`
             }
         }
     }
