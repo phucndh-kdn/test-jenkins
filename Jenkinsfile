@@ -1,22 +1,21 @@
 pipeline {
     agent any
-
     stages {
-        // stage('Check Style') {
+        stage('Install Dependencies') {
+            steps {
+                bat 'npm install'
+            }
+        }
+        // stage('Run Tests') {
         //     steps {
-        //         sh 'npm run lint' // Nếu dùng Java thì thay bằng checkstyle
+        //         bat 'npm run test' // Hoặc `mvn test` nếu là Java
         //     }
         // }
-        stage('Run Tests') {
-            steps {
-                sh 'npm run test' // Hoặc `mvn test` nếu là Java
-            }
-        }
-        stage('Build') {
-            steps {
-                sh 'npm run build' // Hoặc `mvn package`
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         bat 'npm run build' // Hoặc `mvn package`
+        //     }
+        // }
     }
 
     post {
