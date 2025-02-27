@@ -2,21 +2,19 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main', url: 'https://github.com/phucndh-kdn/test-jenkins.git'
-            }
-        }
-
-        stage('Install Dependencies') {
-            steps {
-                sh 'npm ci'  // Cài đặt dependencies
-            }
-        }
-
+        // stage('Check Style') {
+        //     steps {
+        //         sh 'npm run lint' // Nếu dùng Java thì thay bằng checkstyle
+        //     }
+        // }
         stage('Run Tests') {
             steps {
-                sh 'npm run test'
+                sh 'npm run test' // Hoặc `mvn test` nếu là Java
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'npm run build' // Hoặc `mvn package`
             }
         }
     }
@@ -24,9 +22,7 @@ pipeline {
     post {
         failure {
             script {
-                if (env.BRANCH_NAME.startsWith("PR-")) {
-                    error("Pull request bị lỗi, không cho merge.")
-                }
+                error("Pipeline failed! Blocking merge request.")
             }
         }
     }
