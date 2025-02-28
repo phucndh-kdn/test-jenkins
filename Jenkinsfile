@@ -6,9 +6,14 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Lint & Test') {
+        stage('Install') {
             steps {
                 bat 'npm install'
+            }
+        }
+        stage('Run test') {
+            steps {
+                bat 'npm run test'
             }
         }
         stage('Build') {
