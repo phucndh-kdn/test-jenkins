@@ -1,7 +1,9 @@
 pipeline {
     agent any
     triggers {
-        githubPullRequest()
+        githubPullRequests {
+            allowMembersOfWhitelistedOrgsAsAdmin(true)
+        }
     }
     stages {
         stage('Checkout') {
