@@ -9,8 +9,6 @@ pipeline {
         stage('Lint & Test') {
             steps {
                 bat 'npm install'
-                // sh 'npm run lint'
-                // sh 'npm test'
             }
         }
         stage('Build') {
