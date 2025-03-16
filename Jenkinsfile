@@ -27,8 +27,9 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE = 'my-local-app'
+        DOCKER_IMAGE = 'my-angular-app'
         DOCKER_TAG = 'latest'
+        DOCKER_PORT = '8081'  // Chạy trên port 8081
     }
     stages {
         stage('Checkout') {
@@ -53,14 +54,14 @@ pipeline {
         }
         stage('Build & Run Docker') {
             when {
-                branch 'main'  // Chỉ chạy khi merge vào main
+                branch 'main' 
             }
             steps {
                 script {
                     bat "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
-                    bat "docker stop my-app-container || exit 0"
-                    bat "docker rm my-app-container || exit 0"
-                    bat "docker run -d -p 8081:80 --name my-app-container ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    bat "docker stop angular-container || exit 0"
+                    bat "docker rm angular-container || exit 0"
+                    bat "docker run -d -p ${DOCKER_PORT}:8081 --name angular-container ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
             }
         }
