@@ -20,5 +20,5 @@
     EXPOSE 8081
     
     # Chạy ứng dụng bằng serve trên port 8081
-    CMD ["serve", "-s", "dist/my-angular-app", "-l", "8081"]
+    CMD ["serve", "-s", "dist/jenkins/browser", "-l", "8081"]
     
